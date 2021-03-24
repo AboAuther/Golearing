@@ -40,7 +40,7 @@ func readFromFile() {
 }
 
 //利用bufio 这个包读文件
-func readFromFileByBufio() {
+func readFromFilebyBufio() {
 
 	fileObj, err := os.Open("./main.go")
 	if err != nil {
@@ -89,7 +89,7 @@ func readFromFileByIoutil() {
 func main() {
 
 	//readFromFile()
-	//readFromFileByBufio()
+	//readFromFilebyBufio()
 	readFromFileByIoutil()
 
 }
