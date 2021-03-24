@@ -66,7 +66,7 @@ func readFromFilebyBufio() {
 	}
 }
 
-//利用Ioutil 包读文件
+//利用ioutil 包读文件
 func readFromFileByIoutil() {
 	fileObj, err := os.Open("./main.go")
 	if err != nil {
