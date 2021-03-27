@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	log := mylogger.Newlog("Info")
+	//log := mylogger.NewConsolelogger("Info")
+	log := mylogger.NewFileLogger("Info", "./", "Mylog.log", 10*1024*1024)
 	for {
 
 		name := "AboAuther"

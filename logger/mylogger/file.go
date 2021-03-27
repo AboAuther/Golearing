@@ -34,7 +34,7 @@ func NewFileLogger(levelStr, fp, fn string, fs int64) *FileLogger {
 	}
 	return fl
 }
-func (f *FileLogger) initFile() error {
+func (f *FileLogger) initFile() error { //初始化文件， 连接文件名，打开两个日志文件。
 	fullFileName := path.Join(f.filePath, f.fileName)
 	fileobj, err := os.OpenFile(fullFileName, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
@@ -48,12 +48,15 @@ func (f *FileLogger) initFile() error {
 	}
 	f.fileObj = fileobj
 	f.errFileObj = errFileObj
+	f.Close()
 	return nil
 }
-func (f *FileLogger) enable(loglevel LogLevel) bool {
+
+func (f *FileLogger) enable(loglevel LogLevel) bool { //类别比较
 	return f.level <= loglevel
 }
 
+// 格式化输出到log日志文件中
 func (f *FileLogger) log(lv LogLevel, format string, a ...interface{}) {
 	if f.enable(lv) {
 		msg := fmt.Sprintf(format, a...)
@@ -68,6 +71,7 @@ func (f *FileLogger) log(lv LogLevel, format string, a ...interface{}) {
 	}
 }
 
+//5类日志调用方法
 func (f *FileLogger) Debug(format string, a ...interface{}) {
 	f.log(DEBUG, format, a...)
 }
@@ -83,6 +87,7 @@ func (f *FileLogger) Error(format string, a ...interface{}) {
 func (f *FileLogger) Fatal(format string, a ...interface{}) {
 	f.log(FATAL, format, a...)
 }
+
 func (f *FileLogger) Close() {
 	f.fileObj.Close()
 	f.errFileObj.Close()

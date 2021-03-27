@@ -10,7 +10,8 @@ type ConsoleLogger struct {
 	Level LogLevel
 }
 
-func Newlog(levelStr string) ConsoleLogger {
+//NewConsolelogger 是构造函数
+func NewConsolelogger(levelStr string) ConsoleLogger {
 	level, err := parseLogLevel(levelStr)
 	if err != nil {
 		panic(err)
@@ -20,11 +21,11 @@ func Newlog(levelStr string) ConsoleLogger {
 	}
 }
 
-func (c ConsoleLogger) enable(loglevel LogLevel) bool {
+func (c ConsoleLogger) enable(loglevel LogLevel) bool { //判断level大小，能否输出
 	return c.Level <= loglevel
 }
 
-func (c ConsoleLogger) log(lv LogLevel, format string, a ...interface{}) {
+func (c ConsoleLogger) log(lv LogLevel, format string, a ...interface{}) { //统一的log输出方法
 	if c.enable(lv) {
 		msg := fmt.Sprintf(format, a...)
 		now := time.Now()
@@ -33,12 +34,12 @@ func (c ConsoleLogger) log(lv LogLevel, format string, a ...interface{}) {
 	}
 }
 
+//5类不同级别的日志调用方法
 func (c ConsoleLogger) Debug(format string, a ...interface{}) {
 	c.log(DEBUG, format, a...)
 }
 func (c ConsoleLogger) Info(format string, a ...interface{}) {
 	c.log(INFO, format, a...)
-
 }
 func (c ConsoleLogger) Warning(format string, a ...interface{}) {
 	c.log(WARNING, format, a...)
