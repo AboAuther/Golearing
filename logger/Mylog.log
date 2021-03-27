@@ -1,4 +1,0 @@
-[2021-03-26 21:12:09] [3] [logTest.go:main:17] 这是一条Info日志,name:AboAuther,id:10001
-[2021-03-26 21:12:09] [4] [logTest.go:main:18] 这是一条Warning日志
-[2021-03-26 21:12:09] [5] [logTest.go:main:19] 这是一条Error日志
-[2021-03-26 21:12:09] [6] [logTest.go:main:20] 这是一条Fatal日志
